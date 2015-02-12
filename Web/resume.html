@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="resume.css">
+	</head>
+	<body>
+		<div class="header">
+			<h1>Anna Yuan</h1>
+		</div>	
+		<div class="tagline">
+			<h2>I am a UCLA Master graduate, actively looking for <strong>Software Engineer</strong> full time job.</h2>
+		</div>
+		<div class="education">
+			<h3>Education</h3>
+			<ul>
+				<li>
+					<img src="images/ucla_logo.png" alt="UCLA Logo">
+					<p>Master of Electrical Engineering --- University of California, Los Angeles (GPA 3.60) 06/2014</p>
+				</li>
+				<li>
+					<img src="images/umn_logo.png" alt="UMN Logo">	
+					<p>Bachelor of Electrical Engineering (Minor in Math) --- University of Minnesota, Twin Cities (GPA 3.60) 05/2012</p>
+				</li>
+				<li>
+					<img src="images/bjtu_logo.png" alt="BJTU Logo">
+					<p>Bachelor of Communication Engineering --- Beijing Jiaotong University (BJTU, Beijing, China) 05/2012</p>
+				</li>
+			</ul>
+		</div>
+		<div class="experience">
+			<h3>Experience</h3>
+			<ul>
+				<li>
+					<h4>Associate Engineer: HollySys Automation Technology (Summer Intern)</h4>
+					<p>
+						<ol class="content">
+							<li>Schematic and PCB design of a 24V 14-way Digital Output Module on 120mm*60mm*1.6mm, 4-layer board.</li>
+							<li>Accomplished product specifications design, FMEA (Multisim), derating design analysis and completed relevant documentation including principle specification and technique requirements.</li>
+							<li>Instructed manufacturing and tested product's input, output, back-read and 40 connection pins' working situation with and without 24V DC input and completed test report.</li>
+						</ol>
+					</p>	
+				</li>
+				<li>
+					<h4>Associate Product Manager: Jingoal (Summer Intern)</h4>
+					<ol class="content">
+						<li>Summarized dis/advantages of over 50 webpages and proposed new ideas to improve Homepage design.</li>
+						<li>Assisted product manager to hold daily meetings, checked process with technical and marketing groups and tested frequently on both websites and clients.</li>
+					</ol>
+				</li>
+			</ul>	
+		</div>
+		<div class="projects">
+			<h3>Projects</h3>
+			<ul>
+				<li>
+					<h4>Data Collection, Topic Modeling and Collaborative Filtering (Python & Matlab)</h4>
+					<ol>
+						<li>Implemented a crawler to collect topic_id, answer_id and user_id from "Quora", employed Selenium to access websites and applied Beautiful Soup package to parse html elements.</li>
+						<li>Processed the data to find 20 most frequent key words for each topic based on "Latent Dirichlet Allocation", estimated probabilities of topics, documents with Bayesian estimator and derived topic distribution.</li>
+						<li>Recommended movies by Machine Learning with Alternating Least Square method for Collaborative Filtering based on user ratings. Randomly separated known entries where 90% for training and 10% for testing. Trained the data with least square factorization and tested our prediction by calculating hit rate and false_alarm rate.</li>
+					</ol>
+				</li>
+				<li>
+					<h4>Data Structure and Algorithms (Java)</h4>
+					<ol>
+						<li>Designed a stamp vending machine by Dynamic Programming, which outputted the minimum number of stamps when entering total value of stamps needed.</li>
+						<li>Designed a Card Game and then extended to BlackJack Game with a game automator, applying Object-Oriented Design.</li>
+						<li>Implemented Queue and Stack with Linked List and Circular Array including basic functions such as adding, deleting new elements and return the top element.</li>
+					</ol>
+				</li>
+				<li>
+					<h4>Image Deblurring by Convex Optimization (M.S. Graduation Project)</h4>
+					<ol>
+						<li>Launched a constrained convex optimization problem by setting objective function as sum of Huber Penalty and "iso" norm and then reconstructed it with primal-dual splitting method.</li>
+						<li>Improved the performance of proximal operator of Huber Penalty by applying Moreau Yosida Regularization.</li>
+						<li>Deblurred "Salt & Pepper" and "Gaussian" noisy gray-scaled images through Chambolle-Pock algorithm.</li>
+					</ol>	
+				</li>
+				<li>
+					<h4>2D Digital Image Processing (C & Matlab)</h4>
+					<ol>
+						<li>Implemented image transform through DCT, DFT, histogram equalization and frequency domain filtering.</li>
+						<li>Performed image edge detection by deriving row and column gradients with 8-adjacent pixels and compared effects by testing with different values of threshold.</li>
+					</ol>
+				</li>
+			</ul>
+		</div>
+		<div class="skills">
+			<h3>Skills</h3>
+			<ul>
+				<li>Java</li>
+				<li>C++</li>
+				<li>HTML</li>
+				<li>CSS</li>
+				<li>JavaScript</li>
+				<li>Python</li>
+				<li>Matlab</li>
+				<li>R</li>
+			</ul>
+		</div>
+		<div class="courses" id="course">
+			<h3>Courses</h3>
+			<ul>
+				<li>Front-End Foundations</li>
+				<li>Algorithm: Design and Analysis</li>
+				<li>Special Topics on Big Data</li>
+				<li>Digital Image Processing</li>
+				<li>Computer Architecture</li>
+				<li>Linear Dynamic Control</li>
+				<li>Linear Programming</li>
+				<li>Convex Optimization</li>
+				<li>Adaptive Filter</li>
+				<li>Theory of Digital Filters</li>
+			</ul>
+		</div>
+		<div class="footer">
+			<p><a href="mailto: annayuanlh@gmail.com">Click here to email me</a></p>
+		</div>
+	</body>
+</html>
