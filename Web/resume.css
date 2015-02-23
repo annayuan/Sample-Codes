@@ -51,6 +51,25 @@ a:hover {
 .header {
 	background-color: #999999;
 }
+.nav{
+	background-size: 100% 100%;
+	padding: 15px 20px 15px 20px;
+	text-align: center;
+	background-image: url("background/navbar.png");
+}
+.nav li {
+	display: inline;
+	padding: 15px;
+	margin: 0 15px 0 15px;
+}
+.nav a  {
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+}
+.nav a:hover {
+	color: #dddddd;
+}
 .tagline {
 	background-color: #000000;
 	padding: 20px 0 20px 0;
@@ -69,7 +88,7 @@ a:hover {
 .education li {
 	margin-bottom: 40px;
 }
-.experience ul, .projects ul, .skills ul {
+.experience ul, .projects ul{
 	list-style-type: none;
 	margin-bottom: 10px;
 }
@@ -80,7 +99,11 @@ a:hover {
 .experience ol li, .projects ol li {
 	margin: 5px 0 8px 0;
 }
-.skills li {
+.skills ul {
+	list-style-type: none;
+	margin: 20px 0 20px 0;
+}
+.programming li, .software li {
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	font-weight: normal;
 	background-color: #666666;
@@ -95,7 +118,7 @@ a:hover {
 .courses ul {
 	list-style-type: none;
 }
-div#course ul {
+div#courses ul {
 	-webkit-column-count: 2;
 	column-count: 2;
 	-webkit-column-gap: 100px;
