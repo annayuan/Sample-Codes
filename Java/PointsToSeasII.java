@@ -4,6 +4,17 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Comparator;
 
+/*
+ *  Given a matrix of river height, water can only move from higher to lower 
+ *  "0" denotes river. Return the point that can reach all rivers
+ *  
+ *  {0,0,0,1,2,3,0},
+ *  {0,1,2,2,4,3,2},
+ *  {2,1,1,3,3,2,0},
+ *  {0,3,3,3,2,3,3,}
+ *  
+ *  For this example, it will return 4 at index (1, 4)
+*/
 public class PointsToSeasII {
 
 	public class Index {
@@ -30,19 +41,25 @@ public class PointsToSeasII {
 		boolean[][] visited = new boolean[row][col];
 		for (int i = 0; i < row; ++i) {
 			for (int j = 0; j < col; ++j) {
-				if (input[i][j] == 0 && num[i][j] != -1) {    // Yeah, this is right thing to check, but it seems you don't update it in a right way. 
+				// start with each 0 and mark all 0s around it as -1 so that other 0s won't be expanded again
+				// find all values greater or equal to current value around it and num++
+				// at the same time, we need to count the total number of rivers
+				if (input[i][j] == 0 && num[i][j] != -1) {    
 					Index seed = new Index(i, j);
 					minHeap.offer(seed);
-					//boolean[][] visited = new boolean[row][col];
+					// boolean[][] visited = new boolean[row][col];
+					// use a boolean matrix to mark whether a point has been visited
 					for (boolean[] temp: visited) {
 						Arrays.fill(temp, false);
 					}
-					// Couple things about this visited matrix:
-					search(input, visited, num, minHeap);    //   1) The type can just be boolean instead of int.
-					count++;                                 //   2) You are creating a new matrix every time. A better way is to create this matrix
-				}                                            //       outside the for loop. And at end of each iteration, reset this matrix to all 0. This 
-			}                                                //       approach is better in terms of memory usage and performance. 
+					
+					search(input, visited, num, minHeap);    
+					count++;                                 
+				}                                           
+			}                                                 
 		}
+		// after dealing with all rivers, traverse the num matrix
+		// if a value equals to count, it means that it can reach all rivers
 		for (int i = 0; i < row; ++i) {
 			for (int j = 0; j < col; ++j) {
 				if (num[i][j] == count) {
@@ -66,12 +83,9 @@ public class PointsToSeasII {
 			} else {
 				num[i][j]++;
 			}
-            // Update num matrix at here. And if the input[i][j] is 0, set num[i][j] = -1.
 			if (i - 1 >= 0 && input[i - 1][j] >= value
 					&& visited[i - 1][j] != true) {
 				minHeap.offer(new Index(i - 1, j));
-				// This can be removed because you will update this when the cell is poped from heap. 
-				// Same as above. 
 				visited[i-1][j] = true;
 			}
 			if (i + 1 < input.length && input[i + 1][j] >= value
