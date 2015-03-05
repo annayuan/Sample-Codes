@@ -1,4 +1,4 @@
-package com.laioffer.midterm;
+package com.github.yuan0122;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -7,11 +7,20 @@ import java.util.Queue;
 /*
  * Given a Binary Tree, print Right view of it. 
  * Right view of a Binary Tree is set of nodes visible when tree is visited from Right side.
- * 
+ * For example, given a Binary Tree below
+ *					1
+ *				2		3
+ *			 4     5 6     7
+ *        8     9
+ *     10
+ *        11
+ * THe right view of this tree will be {1, 3, 7, 9, 10, 11}
  */
 
 public class RightView {
 	
+	// A straight forward solution is to print the last element of each level
+	// when doing level-order traversal
 	public void rightViewI(TreeNode root) {
 		if (root == null) {
 			return;
@@ -46,6 +55,9 @@ public class RightView {
 		}	
 	}
 	
+	// Method 2: 
+	// Another method is to use recursion, and traverse tree with "pre-order" 
+	// but go to right before left because we want to print right view.
 	public int maxLevel = 0;
 	public int level = 1;
 	public void rightViewII(TreeNode root) {
@@ -53,6 +65,7 @@ public class RightView {
 	}
 	
 	private void rightViewRec(TreeNode root, int level, int maxLevel) {
+		// base case
 		if (root == null) {
 			return;
 		}

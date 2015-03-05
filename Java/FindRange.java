@@ -1,8 +1,16 @@
-package session;
+package com.github.yuan0122;
 
+/*
+ * Given a binary search tree with all nodes' value >= 1, 
+ * every TreeNode follow the definition of BST, except for one TreeNode,
+ * which is assigned with value "0".
+ * Find this node and find the possible range of this TreeNode's value.
+ * 
+*/
 public class FindRange {
-	
-	//public TreeNode prev;
+
+	// The basic idea to solve this problem is to use Binary Tree InOrder Traversal with recursion
+	// Need to be very carefully deal with all corner cases
 	public String findRange(TreeNode root) {
 		if (root == null) {
 			return "Invalid";
@@ -10,21 +18,22 @@ public class FindRange {
 			return "[1, Infinity)";
 		}
 		StringBuilder builder = new StringBuilder();
-		//TreeNode prev = null;
 		TreeNode prev = new TreeNode(-1);
 		prev = helper(root, prev, builder);
-		// helper(root, prev, builder);
 		if (prev.value == 0 && builder.charAt(builder.length() - 1) != ']') {
 			builder.append("Infinity)");
 		}
 		return builder.toString();
 	}
+	// InOrder traversal
 	public TreeNode helper(TreeNode root, TreeNode prev, StringBuilder builder) {
 		if (root == null) {
 			return prev;
-			//return;
 		}
+		// Traverse to left subtree
 		helper(root.left, prev, builder);
+		// Do something part
+		//if root value is 0, this is the target node
 		if (root.value == 0) {
 			if (prev.value == -1) {
 				builder.append("[1, ");
@@ -40,10 +49,10 @@ public class FindRange {
 				builder.append(intToString(num));
 				builder.append(']');
 				return prev;
-				//return;
 			}
 		}
 		prev.value = root.value;
+		// Traverse to right subtree
 		helper(root.right, prev, builder);
 		return prev;
 	}
@@ -59,9 +68,6 @@ public class FindRange {
 	public static void main(String[] args) {
 		FindRange solution = new FindRange();
 		
-		/*int num = 123;
-		System.out.println(solution.intToString(num));*/
-		
 		TreeNode root = null;
 		System.out.println(solution.findRange(root));
 		
@@ -71,7 +77,7 @@ public class FindRange {
 		TreeNode root2 = TreeNode.reConstruct(new String[] {
 				"10", "5", "2", "#", "#", "7", "#", "#", "0", "12", "#", "#", "18", "#", "#"});
 		System.out.println(solution.findRange(root2));
-		
+			
 		TreeNode root3 = TreeNode.reConstruct(new String[] {
 				"4", "2", "1", "#", "#", "#", "0", "8", "#", "#", "#"});
 		System.out.println(solution.findRange(root3));

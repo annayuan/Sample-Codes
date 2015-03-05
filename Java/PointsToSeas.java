@@ -1,4 +1,4 @@
-package session;
+package com.github.yuan0122;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
@@ -15,8 +15,9 @@ import java.util.Comparator;
  *  
  *  For this example, it will return 4 at index (1, 4)
 */
-public class PointsToSeasII {
+public class PointsToSeas {
 
+	// A class Index which contains row index and col index of elements in input matrix
 	public class Index {
 		int row;
 		int col;
@@ -25,6 +26,15 @@ public class PointsToSeasII {
 			this.col = col;
 		}
 	}
+	// Basic idea of solving this problem is to use Best First Search
+	// 1. start with seas (0 points in the input matrix)
+	// 2. expand the first-met 0, expand it in four directions
+	// 3. if generate a 0: mark it as -1 so that it won't be expand again
+	//    if generate a value equal to or greater than current value: mark it as visited and push it into heap
+	// 4. apply another matrix num to mark how many time each point has been visited
+	// 5. at the same time use a variable count to mark how many seas we have found
+	// 6. after traversing all points in matrix, go through num matrix, one we found a value equal to count number
+	//    it means that this point has been expanded same time as seas count. Then this is the point we want.
 	public int point(final int[][] input) {
 		assert input != null && input.length != 0 && input[0].length != 0;		
 		int row = input.length;
@@ -47,7 +57,6 @@ public class PointsToSeasII {
 				if (input[i][j] == 0 && num[i][j] != -1) {    
 					Index seed = new Index(i, j);
 					minHeap.offer(seed);
-					// boolean[][] visited = new boolean[row][col];
 					// use a boolean matrix to mark whether a point has been visited
 					for (boolean[] temp: visited) {
 						Arrays.fill(temp, false);
@@ -77,7 +86,6 @@ public class PointsToSeasII {
 			int i = temp.row;
 			int j = temp.col;
 			int value = input[i][j];
-			//visited[i][j] = true;    
 			if (input[i][j] == 0) {
 				num[i][j] = -1;
 			} else {
@@ -107,7 +115,7 @@ public class PointsToSeasII {
 	}
 	
 	public static void main(String[] args) {
-		PointsToSeasII solution = new PointsToSeasII();
+		PointsToSeas solution = new PointsToSeas();
 		
 		int[][] input = new int[][] {{0,0,0,1,2,3,0},
 									 {0,1,2,2,4,3,2},

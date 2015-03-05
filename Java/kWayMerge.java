@@ -1,18 +1,24 @@
-package anna.java.practice;
+package com.github.yuan0122;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
 /*
- * merge K sorted array/lists
+ * merge K sorted arrays or linked lists
+ * 
 */
 
-public class kWayMerge {
+public class KWayMerge {
 
+	// Merge K sorted Linked List
+	// Basic idea to solve this problem is to apply Best First Search
+	// Use a minHeap to store all ListNodes, 
+	// while the top node should always be the one with min value among all nodes in head
 	public ListNode merge(List<ListNode> list) {
 		assert list != null && !list.isEmpty();
 		ListNode dummy = new ListNode(Integer.MIN_VALUE);
+		// Declare a minHeap with right comparator
 		PriorityQueue<ListNode> minHeap = new PriorityQueue<ListNode>(list.size(), 
 				new Comparator<ListNode>() {
 					@Override
@@ -20,11 +26,13 @@ public class kWayMerge {
 						return l1.value - l2.value;
 					}
 		});
+		// push all head into minHeap
 		for (ListNode head : list) {
 			if (head != null) {
 				minHeap.offer(head);
 			}
 		}
+		// each time pop a node out, push its next node into minHeap
 		ListNode current = dummy;
 		while (!minHeap.isEmpty()) {
 			current.next = minHeap.poll();
@@ -36,6 +44,9 @@ public class kWayMerge {
 		return dummy.next;
 	}
 	
+	// Merge K sorted arrays
+	// The high-level idea is same as merge K sorted Linked List
+	// One more thing needs to be done is to store the position index of every element pushed into heap
 	public static class Pair {
 		int whichArray;
 		int index;
@@ -46,6 +57,7 @@ public class kWayMerge {
 	}
 	public int[] merge(final int[][] arrays) {
 		assert arrays != null && arrays.length != 0;
+		// Declare minHeap with right comparator
 		PriorityQueue<Pair> minHeap = new PriorityQueue<Pair>(arrays.length,
 				new Comparator<Pair>() {
 					@Override
@@ -54,6 +66,8 @@ public class kWayMerge {
 					}
 		});
 		int length = 0;
+		// Firstly, push the first elements of all arrays into heap
+		// at the same time, calculate the final length after sorted
 		for (int i = 0; i < arrays.length; ++i) {
 			int[] array = arrays[i];
 			if (array != null && array.length > 0) {
@@ -62,12 +76,12 @@ public class kWayMerge {
 			}
 		}
 		int[] result = new int[length];
+		// Then, each time an element is pop out, push its next element into heap if it exists
 		for (int i = 0; i < length; ++i) {
 			Pair temp = minHeap.poll();
 			result[i] = arrays[temp.whichArray][temp.index];
 			if (temp.index + 1 < arrays[temp.whichArray].length) {
 				temp.index++;
-				//minHeap.offer(new Pair(temp.whichArray, temp.index));
 				minHeap.offer(temp);
 			}
 		}
